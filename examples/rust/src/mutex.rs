@@ -51,6 +51,6 @@ mod tests {
         println!("Final counter value: {}", final_counter);
 
         // test assertion
-        assert_eq!(final_counter, counter_start + num_threads)
+        assert_eq!(final_counter, counter_start + num_threads);
     }
 }
