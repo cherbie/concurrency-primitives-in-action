@@ -14,7 +14,8 @@ add_executable(test_examples tests/test_main.cpp
                              tests/mutex.cpp
                              tests/barrier.cpp
                              tests/atomic.cpp
-                             tests/condvar.cpp)
+                             tests/condvar.cpp
+                             tests/shared_mutex.cpp)
 target_include_directories(test_examples PUBLIC include)
 target_link_libraries(test_examples GTest::gtest_main
                                     pthread) # pthread for Linux, may vary on other platforms
