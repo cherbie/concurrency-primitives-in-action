@@ -18,7 +18,7 @@ void doWork(int id)
     std::cout << "Thread " << id << " is doing some work after the barrier." << std::endl;
 }
 
-TEST(BarrierExample, TestIncrementSharedData)
+TEST(BarrierExample, TestBarrierSynchronization)
 {
     std::vector<std::thread> thread_handles;
 
