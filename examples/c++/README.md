@@ -4,7 +4,7 @@
 
 Making use of _[CMAKE](https://cmake.org/cmake/help/latest/)_, _[CTEST](https://cmake.org/cmake/help/latest/manual/ctest.1.html)_ in the build system.
 
-Before building the test executable ensure you have \_initialised all `.gitmodules` via:
+Before building the test executable ensure you have _initialised all_ `.gitmodules` via:
 
 ```bash
 git submodule update --init
@@ -30,4 +30,15 @@ cmake --build build
 # run executables (tests)
 cd build
 ctest
+```
+
+
+## FAQ
+
+#### How can I get verbose stdout output when running `ctest`?
+
+Specifically to get the print information to `stdout` you can use the following command
+
+```bash
+ctest --verbose
 ```
