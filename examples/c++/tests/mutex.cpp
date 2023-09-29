@@ -1,59 +1,36 @@
 #include <iostream>
 #include <thread>
-#include <mutex>
 #include <gtest/gtest.h>
+#include <examples/mutex.h>
 
-std::mutex mtx;     // Mutex to protect access to shared data
-int sharedData = 0; // Shared data
-
-const int numThreads = 5;
-
-void incrementData(int id)
+TEST(MutexExample, TestIncrementSharedData)
 {
-    for (int i = 0; i < 5; ++i)
+    const int NUM_THREADS = 5;
+    std::thread thread_handles[NUM_THREADS];
+
+    auto shared_data = std::make_shared<ThreadSafe::SharedData>();
+
+    for (int id = 0; id < NUM_THREADS; id++)
     {
-        // Lock the mutex to protect the critical section
-        std::unique_lock<std::mutex> lock(mtx);
+        thread_handles[id] = std::thread([id, shared_data]()
+                                         {
+                                            // threadsafe increment
+                                            shared_data->increment();
 
-        // Simulate some work
-        std::this_thread::sleep_for(std::chrono::milliseconds(id));
+                                            std::cout << "Thread " << id << " incremented sharedData to " << shared_data->read() << std::endl;
 
-        // Increment the shared data
-        ++sharedData;
-        std::cout << "Thread " << id << " incremented sharedData to " << sharedData << std::endl;
-
-        // Unlock the mutex when done
-        lock.unlock();
-
-        // Continue with other work outside the critical section
-        std::this_thread::sleep_for(std::chrono::milliseconds(id));
+                                            // simulate some work
+                                            std::this_thread::sleep_for(std::chrono::milliseconds(id)); });
     }
+
+    // wait for all threads to finish
+    for (auto &thread_handle : thread_handles)
+    {
+        thread_handle.join();
+    }
+
+    // print the final value of the shared data
+    std::cout << "Final sharedData value: " << shared_data->read() << std::endl;
+
+    EXPECT_EQ(shared_data->read(), NUM_THREADS);
 }
-
-// Demonstrate some basic assertions.
-TEST(HelloTest, BasicAssertions)
-{
-    // Expect two strings not to be equal.
-    EXPECT_STRNE("hello", "world");
-    // Expect equality.
-    EXPECT_EQ(7 * 6, 42);
-}
-
-// int main() {
-//     std::thread threads[numThreads];
-
-//     // Create threads that increment the shared data
-//     for (int i = 0; i < numThreads; ++i) {
-//         threads[i] = std::thread(incrementData, i);
-//     }
-
-//     // Wait for all threads to finish
-//     for (int i = 0; i < numThreads; ++i) {
-//         threads[i].join();
-//     }
-
-//     // Print the final value of the shared data
-//     std::cout << "Final sharedData value: " << sharedData << std::endl;
-
-//     return 0;
-// }

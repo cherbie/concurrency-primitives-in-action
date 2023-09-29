@@ -12,8 +12,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../packages/googletest ./package
 # Add your test files
 add_executable(test_examples tests/test_main.cpp
                              tests/mutex.cpp)
-
-# Link your project with Google Test
+target_include_directories(test_examples PUBLIC include)
 target_link_libraries(test_examples GTest::gtest_main
                                     pthread) # pthread for Linux, may vary on other platforms
 
