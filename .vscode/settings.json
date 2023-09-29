@@ -76,6 +76,7 @@
         "compare": "cpp",
         "concepts": "cpp",
         "algorithm": "cpp",
-        "barrier": "cpp"
+        "barrier": "cpp",
+        "queue": "cpp"
     }
 }

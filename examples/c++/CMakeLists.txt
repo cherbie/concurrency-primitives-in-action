@@ -13,7 +13,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../packages/googletest ./package
 add_executable(test_examples tests/test_main.cpp
                              tests/mutex.cpp
                              tests/barrier.cpp
-                             tests/atomic.cpp)
+                             tests/atomic.cpp
+                             tests/condvar.cpp)
 target_include_directories(test_examples PUBLIC include)
 target_link_libraries(test_examples GTest::gtest_main
                                     pthread) # pthread for Linux, may vary on other platforms
