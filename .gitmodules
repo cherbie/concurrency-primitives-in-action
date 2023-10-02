@@ -1,3 +1,6 @@
 [submodule "packages/googletest"]
 	path = packages/googletest
 	url = https://github.com/google/googletest.git
+[submodule "packages/presentation"]
+	path = packages/presentation
+	url = git@github.com:cherbie/reveal.js.git
