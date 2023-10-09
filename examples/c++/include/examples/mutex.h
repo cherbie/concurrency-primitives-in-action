@@ -26,4 +26,4 @@ namespace ThreadSafe
     };
 } // namespace ThreadSafe
 
-#endif
+#endif // #ifndef _H_MUTEX
