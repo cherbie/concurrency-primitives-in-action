@@ -78,6 +78,7 @@
         "algorithm": "cpp",
         "barrier": "cpp",
         "queue": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "filesystem": "cpp"
     }
 }
